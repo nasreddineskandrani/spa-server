@@ -17,8 +17,8 @@ type spaHandler struct {
 // (2) Request path is a directory
 // Otherwise serves the requested file.
 func (h *spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Cache-Control", "no-cache");
-	w.Header().Set("Pragma", "no-cache");
+	w.Header().Set("Cache-Control", "no-store");
+	w.Header().Set("Pragma", "no-store");
 	p := filepath.Join(h.publicDir, filepath.Clean(r.URL.Path))
 
 	if info, err := os.Stat(p); err != nil {
